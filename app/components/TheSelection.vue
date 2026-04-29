@@ -1,5 +1,5 @@
 <template>
-  <section class="py-40 px-8 bg-[var(--color-marble)] overflow-hidden relative">
+  <section id="selection" class="py-40 px-8 bg-[var(--color-marble)] overflow-hidden relative">
     <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2000')] bg-cover bg-center opacity-[0.03] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto relative z-10">
       <div class="text-center mb-32">
@@ -16,8 +16,8 @@
           class="selection-item group cursor-pointer"
           @click="selectItem(i, $event)"
         >
-          <div class="relative aspect-square glass-premium rounded-[2.5rem] overflow-hidden mb-12 transition-all duration-[1s] group-hover:scale-[1.03] group-hover:shadow-[0_30px_60px_rgba(212,175,55,0.2)]">
-            <img :src="item.image" :alt="item.name" class="w-full h-full object-cover filter saturate-[0.6] group-hover:saturate-100 transition-all duration-[1.5s] group-hover:scale-110" />
+          <div class="relative aspect-square glass-premium rounded-[2.5rem] overflow-hidden mb-12 transition-all duration-700 group-hover:scale-[1.03] group-hover:shadow-[0_30px_60px_rgba(212,175,55,0.2)]">
+            <img :src="item.image" :alt="item.name" class="w-full h-full object-cover filter saturate-[0.6] group-hover:saturate-100 transition-all duration-[1s] group-hover:scale-110" />
             
             <!-- Premium Dark Gradient Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-emerald-dark)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>

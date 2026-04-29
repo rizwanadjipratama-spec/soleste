@@ -1,5 +1,5 @@
 <template>
-  <section class="py-40 px-8 bg-[var(--color-marble)]">
+  <section id="booking" class="py-40 px-8 bg-[var(--color-marble)]">
     <div class="max-w-4xl mx-auto glass-premium rounded-[3rem] p-12 md:p-24 relative overflow-hidden">
       <!-- Decorative Elements -->
       <div class="absolute top-0 right-0 w-64 h-64 bg-[var(--color-gold)]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>

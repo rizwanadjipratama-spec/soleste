@@ -22,41 +22,53 @@ import gsap from 'gsap'
 
 const cursorMain = ref(null)
 const cursorFollower = ref(null)
-const isHovering = ref(false)
+const isClicked = ref(false)
 
 const onMouseMove = (e) => {
   const { clientX, clientY } = e
   
-  // Main cursor (tight follow)
   gsap.to(cursorMain.value, {
     x: clientX,
     y: clientY,
-    duration: 0.05, // Even tighter
-    ease: 'none' // Linear for perfect sync
+    duration: 0.1,
+    ease: 'power2.out'
   })
   
-  // Follower (trailing follow)
   gsap.to(cursorFollower.value, {
     x: clientX,
     y: clientY,
-    duration: 0.3,
-    ease: 'power2.out'
+    duration: 0.4,
+    ease: 'power3.out'
   })
 }
 
+const onMouseDown = () => {
+  isClicked.value = true
+  gsap.to(cursorMain.value, { scale: 0.8, duration: 0.2 })
+}
+
+const onMouseUp = () => {
+  isClicked.value = false
+  gsap.to(cursorMain.value, { scale: 1, duration: 0.2 })
+}
+
 const onMouseOver = (e) => {
-  if (e.target.closest('button, a, .interactive')) {
+  const target = e.target
+  if (target.closest('button, a, .interactive, .selection-item, .cake-card')) {
     isHovering.value = true
+    gsap.to(cursorMain.value, { width: 64, height: 64, duration: 0.3 })
   } else {
     isHovering.value = false
+    gsap.to(cursorMain.value, { width: 32, height: 32, duration: 0.3 })
   }
 }
 
 onMounted(() => {
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseover', onMouseOver)
+  window.addEventListener('mousedown', onMouseDown)
+  window.addEventListener('mouseup', onMouseUp)
   
-  // Hide default cursor globally
   document.documentElement.style.cursor = 'none'
   document.body.style.cursor = 'none'
 })
@@ -64,6 +76,8 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('mousemove', onMouseMove)
   window.removeEventListener('mouseover', onMouseOver)
+  window.removeEventListener('mousedown', onMouseDown)
+  window.removeEventListener('mouseup', onMouseUp)
   document.documentElement.style.cursor = 'auto'
   document.body.style.cursor = 'auto'
 })

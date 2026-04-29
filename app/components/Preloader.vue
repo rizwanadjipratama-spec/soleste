@@ -86,8 +86,10 @@ onMounted(() => {
   
   tl.to('.preloader-main', {
     yPercent: -100,
-    duration: 1.5,
-    ease: 'expo.inOut'
+    scale: 0.9,
+    filter: 'blur(20px)',
+    duration: 2,
+    ease: 'power4.inOut'
   })
 })
 </script>

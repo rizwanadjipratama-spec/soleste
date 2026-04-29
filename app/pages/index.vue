@@ -27,8 +27,35 @@
       </div>
     </section>
 
-    <!-- SECTION 2: THE ROYAL VAULT (GALLERY) -->
-    <section class="py-32 px-8 max-w-7xl mx-auto">
+    <!-- SECTION 2: OUR STORY -->
+    <section id="story" class="py-40 px-8 bg-[var(--color-marble)] overflow-hidden">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20">
+        <div class="w-full md:w-1/2 relative">
+          <div class="aspect-[4/5] rounded-[3rem] overflow-hidden glass-premium shadow-2xl reveal-img">
+            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=2000" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[var(--color-gold)] rounded-full flex items-center justify-center p-8 text-center text-white font-serif text-sm leading-tight shadow-2xl rotate-12 reveal-badge">
+            Est. 2026 <br/> Royal Patisserie
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-8">
+          <span class="text-[var(--color-gold-dark)] tracking-[0.4em] uppercase text-xs font-semibold block reveal-text">Our Legacy</span>
+          <h3 class="text-5xl md:text-7xl font-serif font-light reveal-text">A Symphony of <br/> <span class="italic">Flavour & Art</span></h3>
+          <p class="text-lg text-[var(--color-emerald)]/70 font-serif leading-relaxed reveal-text">
+            Soléste was born from a vision to blend the precision of royal craftsmanship with the untamed beauty of natural flavours. Each creation is more than just a cake; it is a narrative told through the finest chocolate, the rarest fruits, and a touch of golden alchemy.
+          </p>
+          <div class="pt-6 reveal-text">
+            <div class="flex items-center gap-4 text-[var(--color-gold-dark)] border-b border-[var(--color-gold)]/20 pb-4 w-fit group cursor-pointer hover:border-[var(--color-gold)] transition-all">
+              <span class="tracking-widest uppercase text-sm">Read the Full Narrative</span>
+              <span class="transform group-hover:translate-x-2 transition-transform">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE ROYAL VAULT (GALLERY) -->
+    <section id="vault" class="py-32 px-8 max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
         <div class="max-w-2xl">
           <span class="flex items-center gap-4 text-[var(--color-gold-dark)] tracking-[0.4em] uppercase text-xs mb-6 font-semibold">
@@ -118,7 +145,7 @@ onMounted(() => {
     duration: 1.8,
     stagger: 0.25,
     ease: 'power4.out',
-    delay: 4.5
+    delay: 4.8
   })
 
   // Scroll line animation
@@ -128,6 +155,44 @@ onMounted(() => {
     ease: 'power4.inOut',
     delay: 1.5
   })
+
+  // Story section animations
+  gsap.from('.reveal-img', {
+    scrollTrigger: {
+      trigger: '#story',
+      start: 'top 80%',
+    },
+    xPercent: -20,
+    opacity: 0,
+    duration: 1.5,
+    ease: 'power4.out'
+  })
+
+  gsap.from('.reveal-badge', {
+    scrollTrigger: {
+      trigger: '#story',
+      start: 'top 70%',
+    },
+    scale: 0,
+    rotate: -45,
+    opacity: 0,
+    duration: 1,
+    delay: 0.5,
+    ease: 'back.out(1.7)'
+  })
+
+  gsap.from('.reveal-text', {
+    scrollTrigger: {
+      trigger: '#story',
+      start: 'top 75%',
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1.2,
+    stagger: 0.15,
+    ease: 'power3.out'
+  })
+
 
   // Parallax background
   window.addEventListener('scroll', () => {

@@ -1,6 +1,8 @@
 <template>
   <div class="app-container bg-[var(--color-emerald-dark)]">
-    <Preloader v-if="isLoading" @reveal="startReveal" @loaded="finishLoading" />
+    <Transition name="fade-preloader">
+      <Preloader v-if="isLoading" @reveal="startReveal" @loaded="finishLoading" />
+    </Transition>
     
     <div>
       <MagicCursor />
@@ -9,7 +11,9 @@
       <!-- Fixed Header with Burger (Now outside scroll-wrapper) -->
       <header class="fixed top-0 left-0 w-full px-10 py-8 z-[110] flex justify-between items-center pointer-events-none transition-opacity duration-700">
         <div class="pointer-events-auto mix-blend-difference">
-          <h1 class="text-3xl font-serif text-[var(--color-gold)] tracking-widest uppercase relative z-[120]">Soléste</h1>
+          <MagneticButton>
+            <h1 class="text-3xl font-serif text-[var(--color-gold)] tracking-widest uppercase relative z-[120] cursor-pointer px-4 py-2">Soléste</h1>
+          </MagneticButton>
         </div>
         
         <!-- Burger Button (The X) -->
@@ -39,13 +43,16 @@
           <!-- Navigation Links -->
           <nav class="relative z-10 flex flex-col items-center gap-12 text-center mt-8 w-full px-8">
             <div class="py-2">
-              <a href="#" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Our Story</a>
+              <a href="#story" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Our Story</a>
             </div>
             <div class="py-2">
-              <a href="#" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">The Vault</a>
+              <a href="#vault" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">The Vault</a>
+            </div>
+            <div class="py-2">
+              <a href="#selection" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Collection</a>
             </div>
             <div class="mt-12 py-2">
-              <a href="#" @click="isMenuOpen = false" class="inline-block border border-[var(--color-gold)] px-10 md:px-14 py-5 rounded-full text-xl md:text-2xl font-serif text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-emerald-dark)] transition-all duration-700 cursor-pointer shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)]">Book an Audience</a>
+              <a href="#booking" @click="isMenuOpen = false" class="inline-block border border-[var(--color-gold)] px-10 md:px-14 py-5 rounded-full text-xl md:text-2xl font-serif text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-emerald-dark)] transition-all duration-700 cursor-pointer shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)]">Book an Audience</a>
             </div>
           </nav>
 
@@ -178,5 +185,12 @@ onUnmounted(() => {
 .menu-fade-leave-from {
   opacity: 1;
   clip-path: circle(150% at 100% 0);
+}
+.fade-preloader-leave-active {
+  transition: opacity 1.5s cubic-bezier(0.7, 0, 0.3, 1), transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+.fade-preloader-leave-to {
+  opacity: 0;
+  transform: translateY(-100%);
 }
 </style>
