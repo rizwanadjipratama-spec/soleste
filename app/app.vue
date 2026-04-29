@@ -103,11 +103,16 @@ watch(isMenuOpen, (isOpen) => {
 })
 
 function startReveal() {
+  window.scrollTo(0, 0)
   nextTick(() => {
     initSmoothScroll()
     animateEntrance()
   })
 }
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+})
 
 function finishLoading() {
   isLoading.value = false
