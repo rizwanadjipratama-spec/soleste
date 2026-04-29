@@ -2,9 +2,9 @@
   <div class="page-home">
     <!-- SECTION 1: THE GRAND ENTRANCE (HERO) -->
     <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
-      <!-- Background Layers for Parallax -->
+      <!-- Background Layers (Stationary & Cinematic Zoom) -->
       <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500')] bg-cover bg-center opacity-[0.15] scale-110 parallax-bg" data-speed="0.1"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500')] bg-cover bg-center opacity-0 scale-125 animate-cinematic-zoom transition-opacity duration-[2s]" :class="{ 'opacity-[0.15]': isBackgroundLoaded }" @load="isBackgroundLoaded = true"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-marble)]/30 via-[var(--color-marble)]/80 to-[var(--color-marble)]"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-marble)] via-transparent to-transparent"></div>
       </div>
@@ -98,11 +98,11 @@
       <div class="absolute top-0 right-0 w-1/2 h-full bg-[var(--color-gold)]/5 -skew-x-12 translate-x-20"></div>
       
       <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div class="relative">
+        <div class="relative reveal-artist-img opacity-0">
           <div class="aspect-square rounded-full border border-[var(--color-gold)]/30 absolute -inset-10 animate-spin-slow"></div>
           <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=1000" class="relative z-10 rounded-3xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Artist at work" />
         </div>
-        <div>
+        <div class="reveal-artist-text opacity-0">
           <h3 class="text-5xl mb-8 text-[var(--color-gold)]">The Artist's Atelier</h3>
           <p class="text-xl leading-relaxed opacity-80 mb-10">
             Behind every Soléste creation is a symphony of passion and precision. Our artists don't just bake; they compose flavors and sculpt textures that transcend the ordinary.
@@ -137,7 +137,14 @@ const cakes = [
   { name: 'Silk & Satin', category: 'Evening Gala', image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200' }
 ]
 
+const isBackgroundLoaded = ref(false)
+
 onMounted(() => {
+  // Check if image is already cached
+  const bgImg = new Image()
+  bgImg.src = 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500'
+  if (bgImg.complete) isBackgroundLoaded.value = true
+  else bgImg.onload = () => isBackgroundLoaded.value = true
   // Hero reveals (Synced perfectly with preloader reveal at 4.5s)
   gsap.to('.hero-reveal', {
     opacity: 1,
@@ -156,13 +163,21 @@ onMounted(() => {
     delay: 1.5
   })
 
+  // Background fade-in
+  gsap.from('.page-home section:first-child .absolute.inset-0', {
+    opacity: 0,
+    duration: 3,
+    ease: 'power2.out',
+    delay: 4 // Start slightly before preloader finishes
+  })
+
   // Story section animations
   gsap.from('.reveal-img', {
     scrollTrigger: {
       trigger: '#story',
       start: 'top 80%',
     },
-    xPercent: -20,
+    xPercent: -10,
     opacity: 0,
     duration: 1.5,
     ease: 'power4.out'
@@ -186,34 +201,47 @@ onMounted(() => {
       trigger: '#story',
       start: 'top 75%',
     },
-    y: 50,
+    y: 30,
     opacity: 0,
     duration: 1.2,
-    stagger: 0.15,
+    stagger: 0.1,
     ease: 'power3.out'
   })
 
+  // Artist section reveal
+  gsap.to('.reveal-artist-img', {
+    scrollTrigger: {
+      trigger: '.reveal-artist-img',
+      start: 'top 80%',
+    },
+    opacity: 1,
+    x: 0,
+    duration: 1.5,
+    ease: 'power3.out'
+  })
 
-  // Parallax background
-  window.addEventListener('scroll', () => {
-    const scroll = window.pageYOffset
-    gsap.to('.parallax-bg', {
-      y: scroll * 0.2,
-      duration: 0.1,
-      ease: 'none'
-    })
+  gsap.to('.reveal-artist-text', {
+    scrollTrigger: {
+      trigger: '.reveal-artist-text',
+      start: 'top 80%',
+    },
+    opacity: 1,
+    y: 0,
+    duration: 1.5,
+    ease: 'power3.out',
+    delay: 0.2
   })
 
   // Scroll animations for gallery
   gsap.to('.cake-card', {
     scrollTrigger: {
       trigger: '.cake-card',
-      start: 'top 80%',
+      start: 'top 85%',
     },
     opacity: 1,
     y: 0,
-    duration: 1,
-    stagger: 0.2,
+    duration: 1.2,
+    stagger: 0.1,
     ease: 'power3.out'
   })
 })
@@ -227,5 +255,13 @@ onMounted(() => {
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.animate-cinematic-zoom {
+  animation: cinematic-zoom 60s ease-out forwards;
+}
+
+@keyframes cinematic-zoom {
+  from { transform: scale(1.25); }
+  to { transform: scale(1); }
 }
 </style>

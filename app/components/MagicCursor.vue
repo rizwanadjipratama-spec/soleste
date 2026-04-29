@@ -23,8 +23,11 @@ import gsap from 'gsap'
 const cursorMain = ref(null)
 const cursorFollower = ref(null)
 const isClicked = ref(false)
+const isHovering = ref(false)
+const isTouchDevice = ref(false)
 
 const onMouseMove = (e) => {
+  if (isTouchDevice.value) return
   const { clientX, clientY } = e
   
   gsap.to(cursorMain.value, {
@@ -43,16 +46,19 @@ const onMouseMove = (e) => {
 }
 
 const onMouseDown = () => {
+  if (isTouchDevice.value) return
   isClicked.value = true
   gsap.to(cursorMain.value, { scale: 0.8, duration: 0.2 })
 }
 
 const onMouseUp = () => {
+  if (isTouchDevice.value) return
   isClicked.value = false
   gsap.to(cursorMain.value, { scale: 1, duration: 0.2 })
 }
 
 const onMouseOver = (e) => {
+  if (isTouchDevice.value) return
   const target = e.target
   if (target.closest('button, a, .interactive, .selection-item, .cake-card')) {
     isHovering.value = true
@@ -64,22 +70,28 @@ const onMouseOver = (e) => {
 }
 
 onMounted(() => {
-  window.addEventListener('mousemove', onMouseMove)
-  window.addEventListener('mouseover', onMouseOver)
-  window.addEventListener('mousedown', onMouseDown)
-  window.addEventListener('mouseup', onMouseUp)
+  isTouchDevice.value = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0)
   
-  document.documentElement.style.cursor = 'none'
-  document.body.style.cursor = 'none'
+  if (!isTouchDevice.value) {
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mouseover', onMouseOver)
+    window.addEventListener('mousedown', onMouseDown)
+    window.addEventListener('mouseup', onMouseUp)
+    
+    document.documentElement.style.cursor = 'none'
+    document.body.style.cursor = 'none'
+  }
 })
 
 onUnmounted(() => {
-  window.removeEventListener('mousemove', onMouseMove)
-  window.removeEventListener('mouseover', onMouseOver)
-  window.removeEventListener('mousedown', onMouseDown)
-  window.removeEventListener('mouseup', onMouseUp)
-  document.documentElement.style.cursor = 'auto'
-  document.body.style.cursor = 'auto'
+  if (!isTouchDevice.value) {
+    window.removeEventListener('mousemove', onMouseMove)
+    window.removeEventListener('mouseover', onMouseOver)
+    window.removeEventListener('mousedown', onMouseDown)
+    window.removeEventListener('mouseup', onMouseUp)
+    document.documentElement.style.cursor = 'auto'
+    document.body.style.cursor = 'auto'
+  }
 })
 </script>
 

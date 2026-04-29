@@ -20,15 +20,18 @@
 }
 
 @layer base {
-/* Global scorched earth cursor hide */
-* {
-  cursor: none !important;
-}
-
 body {
-  cursor: none !important;
   @apply bg-[var(--color-marble)] text-[var(--color-emerald)] font-sans antialiased selection:bg-[var(--color-gold)] selection:text-white;
   overflow-x: hidden;
+}
+
+/* Global Image Reveal to prevent pop-in */
+img {
+  opacity: 0;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+img.loaded {
+  opacity: 1;
 }
 
   h1, h2, h3, h4, h5, h6 {

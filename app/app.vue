@@ -9,20 +9,20 @@
       <AudioManager />
       
       <!-- Fixed Header with Burger (Now outside scroll-wrapper) -->
-      <header class="fixed top-0 left-0 w-full px-10 py-8 z-[110] flex justify-between items-center pointer-events-none transition-opacity duration-700">
+      <header class="fixed top-0 left-0 w-full px-6 md:px-10 py-6 md:py-8 z-[110] flex justify-between items-center pointer-events-none transition-opacity duration-700">
         <div class="pointer-events-auto mix-blend-difference">
           <MagneticButton>
-            <h1 class="text-3xl font-serif text-[var(--color-gold)] tracking-widest uppercase relative z-[120] cursor-pointer px-4 py-2">Soléste</h1>
+            <h1 class="text-2xl md:text-3xl font-serif text-[var(--color-gold)] tracking-widest uppercase relative z-[120] cursor-pointer px-4 py-2">Soléste</h1>
           </MagneticButton>
         </div>
         
         <!-- Burger Button (The X) -->
         <div class="pointer-events-auto">
           <MagneticButton>
-            <button @click="isMenuOpen = !isMenuOpen" class="w-16 h-16 rounded-full border border-[var(--color-gold)]/30 backdrop-blur-md bg-white/5 flex flex-col items-center justify-center gap-[6px] relative transition-all duration-500 hover:bg-[var(--color-gold)]/20 hover:border-[var(--color-gold)] group z-[120] mix-blend-difference">
-              <span class="w-8 h-[2px] bg-[var(--color-gold)] transition-all duration-500 ease-in-out origin-center" :class="{'rotate-45 translate-y-[8px]': isMenuOpen}"></span>
-              <span class="w-8 h-[2px] bg-[var(--color-gold)] transition-all duration-500 ease-in-out" :class="{'opacity-0 translate-x-4': isMenuOpen}"></span>
-              <span class="w-8 h-[2px] bg-[var(--color-gold)] transition-all duration-500 ease-in-out origin-center" :class="{'-rotate-45 -translate-y-[8px]': isMenuOpen}"></span>
+            <button @click="isMenuOpen = !isMenuOpen" class="w-14 h-14 md:w-16 md:h-16 rounded-full border border-[var(--color-gold)]/30 backdrop-blur-md bg-white/5 flex flex-col items-center justify-center gap-[6px] relative transition-all duration-500 hover:bg-[var(--color-gold)]/20 hover:border-[var(--color-gold)] group z-[120] mix-blend-difference">
+              <span class="w-7 md:w-8 h-[2px] bg-[var(--color-gold)] transition-all duration-500 ease-in-out origin-center" :class="{'rotate-45 translate-y-[8px]': isMenuOpen}"></span>
+              <span class="w-7 md:w-8 h-[2px] bg-[var(--color-gold)] transition-all duration-500 ease-in-out" :class="{'opacity-0 translate-x-4': isMenuOpen}"></span>
+              <span class="w-7 md:w-8 h-[2px] bg-[var(--color-gold)] transition-all duration-500 ease-in-out origin-center" :class="{'-rotate-45 -translate-y-[8px]': isMenuOpen}"></span>
             </button>
           </MagneticButton>
         </div>
@@ -35,24 +35,19 @@
           <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2000')] bg-cover bg-center opacity-10 mix-blend-overlay pointer-events-none"></div>
           <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-emerald-dark)] to-transparent opacity-80 pointer-events-none"></div>
           
-          <!-- Explicit Back Button (as requested by user) -->
-          <button @click="isMenuOpen = false" class="absolute top-12 left-1/2 -translate-x-1/2 text-[var(--color-gold)] text-sm tracking-[0.4em] uppercase font-serif hover:opacity-70 transition-opacity z-[110] flex items-center gap-2">
-            <span>←</span> Go Back
-          </button>
-
           <!-- Navigation Links -->
           <nav class="relative z-10 flex flex-col items-center gap-12 text-center mt-8 w-full px-8">
             <div class="py-2">
-              <a href="#story" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Our Story</a>
+              <a href="#story" @click="isMenuOpen = false" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Our Story</a>
             </div>
             <div class="py-2">
-              <a href="#vault" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">The Vault</a>
+              <a href="#vault" @click="isMenuOpen = false" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">The Vault</a>
             </div>
             <div class="py-2">
-              <a href="#selection" @click="isMenuOpen = false" class="block text-5xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Collection</a>
+              <a href="#selection" @click="isMenuOpen = false" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Collection</a>
             </div>
             <div class="mt-12 py-2">
-              <a href="#booking" @click="isMenuOpen = false" class="inline-block border border-[var(--color-gold)] px-10 md:px-14 py-5 rounded-full text-xl md:text-2xl font-serif text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-emerald-dark)] transition-all duration-700 cursor-pointer shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)]">Book an Audience</a>
+              <a href="#booking" @click="isMenuOpen = false" class="inline-block border border-[var(--color-gold)] px-10 md:px-14 py-5 rounded-full text-lg md:text-2xl font-serif text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-emerald-dark)] transition-all duration-700 cursor-pointer shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)]">Book an Audience</a>
             </div>
           </nav>
 
@@ -68,10 +63,10 @@
           <NuxtPage />
         </main>
 
-        <footer class="p-32 bg-[var(--color-emerald)] text-white text-center border-t border-[var(--color-gold)]/20 relative overflow-hidden">
+        <footer class="px-6 py-24 md:p-32 bg-[var(--color-emerald)] text-white text-center border-t border-[var(--color-gold)]/20 relative overflow-hidden flex flex-col items-center justify-center">
           <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2000')] bg-cover bg-center opacity-5 mix-blend-overlay pointer-events-none"></div>
-          <h2 class="text-7xl mb-8 text-[var(--color-gold)] font-serif relative z-10">Soléste</h2>
-          <p class="font-serif italic opacity-70 tracking-[0.4em] text-sm uppercase relative z-10">Crafted for the Royal Appetite</p>
+          <h2 class="text-5xl md:text-7xl mb-8 text-[var(--color-gold)] font-serif relative z-10 w-full text-center">Soléste</h2>
+          <p class="font-serif italic opacity-70 tracking-[0.4em] text-xs md:text-sm uppercase relative z-10 w-full text-center">Crafted for the Royal Appetite</p>
         </footer>
       </div>
     </div>
@@ -120,18 +115,46 @@ function finishLoading() {
 
 function initSmoothScroll() {
   lenis = new Lenis({
-    duration: 1.2,
+    duration: 1.5,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    smoothTouch: false,
+    touchMultiplier: 2,
+    infinite: false,
   })
 
-  lenis.on('scroll', ScrollTrigger.update)
+  function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  }
 
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000)
+  requestAnimationFrame(raf)
+
+  // Global Image Loader (Prevents abrupt pop-in)
+  const handleImg = (img) => {
+    if (img.complete) {
+      img.classList.add('loaded')
+    } else {
+      img.onload = () => img.classList.add('loaded')
+    }
+  }
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === 1) { // Element
+          if (node.tagName === 'IMG') handleImg(node)
+          node.querySelectorAll?.('img').forEach(handleImg)
+        }
+      })
+    })
   })
 
-  gsap.ticker.lagSmoothing(0)
+  observer.observe(document.body, { childList: true, subtree: true })
+  document.querySelectorAll('img').forEach(handleImg)
 }
 
 function animateEntrance() {
