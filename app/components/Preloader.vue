@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 bg-[var(--color-marble)] z-[10000] flex flex-col items-center justify-center overflow-hidden">
+  <div class="preloader-main fixed inset-0 bg-[var(--color-emerald-dark)] z-[10000] flex flex-col items-center justify-center overflow-hidden">
     <!-- Animated SVG Logo -->
     <div ref="logoContainer" class="relative mb-8">
       <svg width="200" height="200" viewBox="0 0 100 100" class="overflow-visible">
@@ -18,25 +18,24 @@
     </div>
 
     <!-- Progress Bar -->
-    <div class="w-64 h-[1px] bg-gray-200 relative overflow-hidden">
+    <div class="w-64 h-[1px] bg-white/10 relative overflow-hidden">
       <div 
         ref="progress"
         class="absolute top-0 left-0 h-full bg-[var(--color-gold)] w-0"
       ></div>
     </div>
-    <p class="mt-4 text-[var(--color-gold-dark)] text-xs tracking-[0.3em] uppercase opacity-50">Preparing the Feast</p>
+    <p class="mt-4 text-[var(--color-gold-dark)] text-xs tracking-[0.3em] uppercase opacity-50 font-serif">Preparing the Feast</p>
   </div>
 </template>
 
 <script setup>
 import gsap from 'gsap'
 
-const emit = defineEmits(['loaded'])
+const emit = defineEmits(['reveal', 'loaded'])
 const path = ref(null)
 const text = ref(null)
 const progress = ref(null)
 const logoContainer = ref(null)
-const preloaderOverlay = ref(null)
 
 onMounted(() => {
   const tl = gsap.timeline({
@@ -81,9 +80,13 @@ onMounted(() => {
     ease: 'power4.in'
   }, '+=0.5')
   
+  tl.add(() => {
+    emit('reveal')
+  })
+  
   tl.to('.preloader-main', {
     yPercent: -100,
-    duration: 1.2,
+    duration: 1.5,
     ease: 'expo.inOut'
   })
 })

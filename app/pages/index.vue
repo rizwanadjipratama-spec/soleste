@@ -111,14 +111,14 @@ const cakes = [
 ]
 
 onMounted(() => {
-  // Hero reveals
+  // Hero reveals (Synced perfectly with preloader reveal at 4.5s)
   gsap.to('.hero-reveal', {
     opacity: 1,
     y: 0,
-    duration: 1.5,
-    stagger: 0.2,
+    duration: 1.8,
+    stagger: 0.25,
     ease: 'power4.out',
-    delay: 0.5
+    delay: 4.5
   })
 
   // Scroll line animation
