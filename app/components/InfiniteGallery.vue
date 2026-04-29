@@ -27,7 +27,7 @@
 <script setup>
 const galleryImages = [
   'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800',
-  'https://images.unsplash.com/photo-1562773184-3ef579395123?q=80&w=800',
+  'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800',
   'https://images.unsplash.com/photo-1535141192574-5d4897c12636?q=80&w=800',
   'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=800',
   'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=800'

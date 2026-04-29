@@ -89,28 +89,7 @@
   </div>
 </template>
 
-<script setup>
-import gsap from 'gsap'
-import { onMounted } from 'vue'
-
-const cakes = [
-  { name: 'The Golden Empire', category: 'Royal Wedding', image: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?q=80&w=1200' },
-  { name: 'G-Noir Elegance', category: 'Dark Collection', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1200' },
-  { name: 'Emerald Dreams', category: 'Signature Collection', image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=1200' },
-  { name: 'Silk & Satin', category: 'Evening Gala', image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200' }
-]
-
-onMounted(() => {
-  // Hero reveals
-  gsap.to('.hero-reveal', {
-    opacity: 1,
-    y: 0,
-    duration: 1.5,
-    stagger: 0.2,
-    ease: 'power4.out',
-    delay: 0.5
-  })
-
+<script>
   // Scroll line animation
   gsap.to('.scroll-line', {
     scaleY: 1,

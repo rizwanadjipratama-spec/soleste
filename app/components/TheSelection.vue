@@ -85,15 +85,15 @@ const menuItems = [
     name: "The Gilded Rose",
     tag: "Floral / Vanilla",
     price: "450",
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200",
     description: "A symphony of Bulgarian Rose essence infused with Madagascar vanilla beans, draped in 24k edible gold leaf.",
     details: ["24k Edible Gold Leaf", "Bulgarian Rose Essence", "3-Tier Structure"]
   },
   {
-    name: "Noir Elegance",
+    name: "G-Noir Elegance",
     tag: "Dark Chocolate / Truffle",
     price: "520",
-    image: "https://images.unsplash.com/photo-1562773184-3ef579395123?q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1200",
     description: "For the refined palate. 85% Venezuelan dark chocolate combined with a hint of black truffle oil.",
     details: ["Venezuelan Cacao", "Black Truffle Infusion", "Velvet Texture"]
   }
