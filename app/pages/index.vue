@@ -4,7 +4,11 @@
     <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
       <!-- Background Layers (Stationary & Cinematic Zoom) -->
       <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500')] bg-cover bg-center opacity-0 scale-125 animate-cinematic-zoom transition-opacity duration-[2s]" :class="{ 'opacity-[0.15]': isBackgroundLoaded }" @load="isBackgroundLoaded = true"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500" 
+          class="absolute inset-0 w-full h-full object-cover scale-125 animate-cinematic-zoom img-reveal hero-bg-img"
+          alt="Hero Background"
+        />
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-marble)]/30 via-[var(--color-marble)]/80 to-[var(--color-marble)]"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-marble)] via-transparent to-transparent"></div>
       </div>
@@ -32,7 +36,7 @@
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20">
         <div class="w-full md:w-1/2 relative">
           <div class="aspect-[4/5] rounded-[3rem] overflow-hidden glass-premium shadow-2xl reveal-img">
-            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=2000" class="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=2000" class="w-full h-full object-cover img-reveal" />
           </div>
           <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[var(--color-gold)] rounded-full flex items-center justify-center p-8 text-center text-white font-serif text-sm leading-tight shadow-2xl rotate-12 reveal-badge">
             Est. 2026 <br/> Royal Patisserie
@@ -72,7 +76,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
         <div v-for="(cake, i) in cakes" :key="i" class="cake-card group opacity-0 translate-y-20 cursor-pointer">
           <div class="relative aspect-[3/4] overflow-hidden glass-premium rounded-[2rem] mb-8 shadow-2xl group-hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-700">
-            <img :src="cake.image" :alt="cake.name" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 filter saturate-[0.8] group-hover:saturate-100" />
+            <img :src="cake.image" :alt="cake.name" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 filter saturate-[0.8] group-hover:saturate-100 img-reveal" />
             
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
               <span class="text-white text-xs tracking-[0.3em] uppercase mb-2">View Details</span>
@@ -137,14 +141,7 @@ const cakes = [
   { name: 'Silk & Satin', category: 'Evening Gala', image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200' }
 ]
 
-const isBackgroundLoaded = ref(false)
-
 onMounted(() => {
-  // Check if image is already cached
-  const bgImg = new Image()
-  bgImg.src = 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500'
-  if (bgImg.complete) isBackgroundLoaded.value = true
-  else bgImg.onload = () => isBackgroundLoaded.value = true
   // Hero reveals (Synced perfectly with preloader reveal at 4.5s)
   gsap.to('.hero-reveal', {
     opacity: 1,
@@ -263,5 +260,8 @@ onMounted(() => {
 @keyframes cinematic-zoom {
   from { transform: scale(1.25); }
   to { transform: scale(1); }
+}
+.hero-bg-img.loaded {
+  opacity: 0.15;
 }
 </style>

@@ -133,28 +133,24 @@ function initSmoothScroll() {
 
   requestAnimationFrame(raf)
 
-  // Global Image Loader (Prevents abrupt pop-in)
-  const handleImg = (img) => {
-    if (img.complete) {
-      img.classList.add('loaded')
-    } else {
-      img.onload = () => img.classList.add('loaded')
-    }
+  // Advanced Image Reveal Logic (Only for .img-reveal elements)
+  const revealImages = () => {
+    document.querySelectorAll('.img-reveal:not(.loaded)').forEach((img) => {
+      if (img.complete) {
+        img.classList.add('loaded')
+      } else {
+        img.onload = () => img.classList.add('loaded')
+      }
+    })
   }
 
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeType === 1) { // Element
-          if (node.tagName === 'IMG') handleImg(node)
-          node.querySelectorAll?.('img').forEach(handleImg)
-        }
-      })
-    })
+  // Run on mount and periodically check for new images (much cleaner than observer)
+  revealImages()
+  const interval = setInterval(revealImages, 1000)
+  
+  onUnmounted(() => {
+    clearInterval(interval)
   })
-
-  observer.observe(document.body, { childList: true, subtree: true })
-  document.querySelectorAll('img').forEach(handleImg)
 }
 
 function animateEntrance() {
@@ -208,6 +204,15 @@ onUnmounted(() => {
 .menu-fade-leave-from {
   opacity: 1;
   clip-path: circle(150% at 100% 0);
+}
+/* Clean Image Reveal Logic */
+.img-reveal {
+  opacity: 0;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-reveal.loaded {
+  opacity: 1;
 }
 .fade-preloader-leave-active {
   transition: opacity 1.5s cubic-bezier(0.7, 0, 0.3, 1), transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);

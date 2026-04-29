@@ -25,12 +25,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Global Image Reveal to prevent pop-in */
-img {
+/* Advanced Image Reveal Pattern */
+.img-reveal {
   opacity: 0;
   transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
 }
-img.loaded {
+
+.img-reveal.loaded {
   opacity: 1;
 }
 
