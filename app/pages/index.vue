@@ -1,51 +1,61 @@
 <template>
   <div class="page-home">
     <!-- SECTION 1: THE GRAND ENTRANCE (HERO) -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
       <!-- Background Layers for Parallax -->
       <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2000')] bg-cover bg-center opacity-20 scale-110 parallax-bg" data-speed="0.1"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-marble)]/80 to-[var(--color-marble)]"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500')] bg-cover bg-center opacity-[0.15] scale-110 parallax-bg" data-speed="0.1"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-marble)]/30 via-[var(--color-marble)]/80 to-[var(--color-marble)]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-marble)] via-transparent to-transparent"></div>
       </div>
 
-      <div class="relative z-10 text-center px-4">
-        <span class="block text-[var(--color-gold-dark)] tracking-[0.5em] uppercase text-sm mb-6 opacity-0 translate-y-10 hero-reveal">Est. 2026</span>
-        <h2 class="text-7xl md:text-9xl font-serif mb-8 opacity-0 translate-y-10 hero-reveal">
+      <div class="relative z-10 text-center px-4 mt-20">
+        <span class="inline-block border border-[var(--color-gold)]/30 rounded-full px-6 py-2 text-[var(--color-gold-dark)] tracking-[0.6em] uppercase text-xs mb-10 opacity-0 translate-y-10 hero-reveal backdrop-blur-sm">Est. 2026</span>
+        <h2 class="text-5xl sm:text-7xl md:text-[9rem] leading-[1.1] font-serif mb-10 opacity-0 translate-y-10 hero-reveal drop-shadow-2xl font-light">
           Food for <br />
-          <span class="magic-text">Kings & Queens</span>
+          <span class="magic-text font-normal italic">Kings & Queens</span>
         </h2>
-        <p class="max-w-xl mx-auto text-lg opacity-0 translate-y-10 hero-reveal text-[var(--color-emerald)]/70">
-          Where every cake is a masterpiece, handcrafted with royal precision and enchanted with the finest flavors.
+        <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl opacity-0 translate-y-10 hero-reveal text-[var(--color-emerald)]/70 font-serif leading-relaxed px-4">
+          Where every cake is a masterpiece, handcrafted with royal precision and enchanted with the finest flavors. Welcome to the pinnacle of patisserie.
         </p>
       </div>
 
       <!-- Scroll Indicator -->
-      <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50">
-        <div class="w-[1px] h-20 bg-[var(--color-gold)] origin-top scale-y-0 scroll-line"></div>
-        <span class="text-[10px] uppercase tracking-widest text-[var(--color-gold-dark)]">Scroll to Enter</span>
+      <div class="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 opacity-60">
+        <div class="w-[1px] h-24 bg-gradient-to-b from-[var(--color-gold)] to-transparent origin-top scale-y-0 scroll-line"></div>
+        <span class="text-[9px] uppercase tracking-[0.4em] text-[var(--color-gold-dark)]">Discover the Magic</span>
       </div>
     </section>
 
     <!-- SECTION 2: THE ROYAL VAULT (GALLERY) -->
     <section class="py-32 px-8 max-w-7xl mx-auto">
-      <div class="flex justify-between items-end mb-20">
-        <div>
-          <span class="text-[var(--color-gold-dark)] tracking-[0.3em] uppercase text-xs mb-4 block">The Collection</span>
-          <h3 class="text-5xl font-serif">The Royal Vault</h3>
+      <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+        <div class="max-w-2xl">
+          <span class="flex items-center gap-4 text-[var(--color-gold-dark)] tracking-[0.4em] uppercase text-xs mb-6 font-semibold">
+            <span class="w-12 h-[1px] bg-[var(--color-gold)]"></span> The Collection
+          </span>
+          <h3 class="text-6xl md:text-7xl font-serif font-light">The Royal Vault</h3>
         </div>
-        <a href="#" class="text-[var(--color-gold-dark)] border-b border-[var(--color-gold)] pb-1 text-sm hover:opacity-70 transition-opacity">Explore All Masterpieces</a>
+        <a href="#" class="group flex items-center gap-4 text-[var(--color-gold-dark)] border-b border-[var(--color-gold)]/30 pb-2 text-sm hover:border-[var(--color-gold)] transition-all duration-500">
+          <span class="tracking-widest uppercase">Explore All Masterpieces</span>
+          <span class="transform group-hover:translate-x-2 transition-transform">→</span>
+        </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <div v-for="(cake, i) in cakes" :key="i" class="cake-card group opacity-0 translate-y-20">
-          <div class="relative aspect-[4/5] overflow-hidden glass-premium rounded-2xl mb-6">
-            <img :src="cake.image" :alt="cake.name" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-              <button class="btn-royal bg-white border-none scale-90 group-hover:scale-100 transition-transform">Inspect Detail</button>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div v-for="(cake, i) in cakes" :key="i" class="cake-card group opacity-0 translate-y-20 cursor-pointer">
+          <div class="relative aspect-[3/4] overflow-hidden glass-premium rounded-[2rem] mb-8 shadow-2xl group-hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-700">
+            <img :src="cake.image" :alt="cake.name" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 filter saturate-[0.8] group-hover:saturate-100" />
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
+              <span class="text-white text-xs tracking-[0.3em] uppercase mb-2">View Details</span>
+              <div class="w-full h-[1px] bg-white/30 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-100"></div>
             </div>
           </div>
-          <h4 class="text-2xl mb-2">{{ cake.name }}</h4>
-          <p class="text-sm opacity-60 font-serif italic">{{ cake.category }}</p>
+          <div class="text-center">
+            <h4 class="text-3xl font-serif mb-3 text-[var(--color-emerald)] transition-colors duration-500 group-hover:text-[var(--color-gold-dark)]">{{ cake.name }}</h4>
+            <p class="text-sm opacity-60 font-serif italic tracking-widest text-[var(--color-gold-dark)]">{{ cake.category }}</p>
+          </div>
         </div>
       </div>
     </section>

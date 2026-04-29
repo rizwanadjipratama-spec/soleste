@@ -39,6 +39,7 @@ body {
 @layer components {
   .magic-text {
     @apply relative inline-block;
+    padding-bottom: 0.2em;
     background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-dark));
     background-size: 200% auto;
     -webkit-background-clip: text;

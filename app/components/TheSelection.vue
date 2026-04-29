@@ -1,10 +1,11 @@
 <template>
-  <section class="py-40 px-8 bg-[var(--color-marble)] overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-24">
-        <span class="text-[var(--color-gold-dark)] tracking-[0.4em] uppercase text-xs mb-4 block">The Experience</span>
-        <h3 class="text-6xl font-serif">The Royal Selection</h3>
-        <p class="mt-6 text-[var(--color-emerald)]/60 max-w-2xl mx-auto">Click on a masterpiece to unveil its royal lineage and the magic within.</p>
+  <section class="py-40 px-8 bg-[var(--color-marble)] overflow-hidden relative">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2000')] bg-cover bg-center opacity-[0.03] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="text-center mb-32">
+        <span class="inline-block border border-[var(--color-gold)]/30 rounded-full px-6 py-2 text-[var(--color-gold-dark)] tracking-[0.4em] uppercase text-xs mb-8">The Experience</span>
+        <h3 class="text-6xl md:text-8xl font-serif font-light mb-6">The Royal Selection</h3>
+        <p class="text-[var(--color-emerald)]/60 max-w-2xl mx-auto text-lg font-serif italic">Click on a masterpiece to unveil its royal lineage and the magic within.</p>
       </div>
 
       <!-- Selection Grid -->
@@ -15,25 +16,28 @@
           class="selection-item group cursor-pointer"
           @click="selectItem(i, $event)"
         >
-          <div class="relative aspect-square glass-premium rounded-3xl overflow-hidden mb-10 transition-transform duration-700 group-hover:scale-[1.02]">
-            <img :src="item.image" :alt="item.name" class="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700" />
+          <div class="relative aspect-square glass-premium rounded-[2.5rem] overflow-hidden mb-12 transition-all duration-[1s] group-hover:scale-[1.03] group-hover:shadow-[0_30px_60px_rgba(212,175,55,0.2)]">
+            <img :src="item.image" :alt="item.name" class="w-full h-full object-cover filter saturate-[0.6] group-hover:saturate-100 transition-all duration-[1.5s] group-hover:scale-110" />
             
+            <!-- Premium Dark Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-emerald-dark)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
             <!-- Ornate Corner Overlays -->
-            <div class="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-[var(--color-gold)]/30 rounded-tl-3xl m-6"></div>
-            <div class="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-[var(--color-gold)]/30 rounded-br-3xl m-6"></div>
+            <div class="absolute top-0 left-0 w-24 h-24 border-t-[1px] border-l-[1px] border-[var(--color-gold)]/50 rounded-tl-[2.5rem] m-8 opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 border-b-[1px] border-r-[1px] border-[var(--color-gold)]/50 rounded-br-[2.5rem] m-8 opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
 
             <!-- Price Badge -->
-            <div class="absolute top-8 right-8 w-16 h-16 rounded-full bg-[var(--color-gold)]/90 backdrop-blur-md flex items-center justify-center text-white font-serif text-lg shadow-xl translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="absolute top-8 right-8 w-20 h-20 rounded-full bg-[var(--color-gold)]/90 backdrop-blur-md flex items-center justify-center text-white font-serif text-xl shadow-2xl translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-700 ease-out">
               ${{ item.price }}
             </div>
           </div>
 
-          <div class="flex justify-between items-center">
+          <div class="flex justify-between items-end px-4">
             <div>
-              <h4 class="text-3xl font-serif mb-2">{{ item.name }}</h4>
-              <p class="text-sm tracking-[0.2em] uppercase opacity-50">{{ item.tag }}</p>
+              <p class="text-xs tracking-[0.3em] uppercase opacity-60 text-[var(--color-gold-dark)] mb-3">{{ item.tag }}</p>
+              <h4 class="text-4xl font-serif text-[var(--color-emerald)] group-hover:text-[var(--color-gold-dark)] transition-colors duration-500">{{ item.name }}</h4>
             </div>
-            <div class="w-12 h-[1px] bg-[var(--color-gold)]"></div>
+            <div class="w-16 h-[1px] bg-[var(--color-gold)]/50 group-hover:bg-[var(--color-gold)] transition-colors duration-500 mb-2 transform origin-right scale-x-50 group-hover:scale-x-100"></div>
           </div>
         </div>
       </div>
