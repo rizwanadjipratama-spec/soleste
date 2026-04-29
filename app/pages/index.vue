@@ -36,7 +36,7 @@
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20">
         <div class="w-full md:w-1/2 relative">
           <div class="aspect-[4/5] rounded-[3rem] overflow-hidden glass-premium shadow-2xl reveal-img">
-            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=2000" class="w-full h-full object-cover img-reveal" />
+            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=2000" class="w-full h-full object-cover" />
           </div>
           <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[var(--color-gold)] rounded-full flex items-center justify-center p-8 text-center text-white font-serif text-sm leading-tight shadow-2xl rotate-12 reveal-badge">
             Est. 2026 <br/> Royal Patisserie
@@ -76,7 +76,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
         <div v-for="(cake, i) in cakes" :key="i" class="cake-card group cursor-pointer">
           <div class="relative aspect-[3/4] overflow-hidden glass-premium rounded-[2rem] mb-8 shadow-2xl group-hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-700">
-            <img :src="cake.image" :alt="cake.name" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 filter saturate-[0.8] group-hover:saturate-100 img-reveal" />
+            <img :src="cake.image" :alt="cake.name" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 filter saturate-[0.8] group-hover:saturate-100" />
             
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
               <span class="text-white text-xs tracking-[0.3em] uppercase mb-2">View Details</span>
@@ -241,6 +241,11 @@ onMounted(() => {
     stagger: 0.1,
     ease: 'power3.out'
   })
+
+  // Final refresh to ensure everything is in place
+  setTimeout(() => {
+    ScrollTrigger.refresh()
+  }, 1000)
 })
 </script>
 

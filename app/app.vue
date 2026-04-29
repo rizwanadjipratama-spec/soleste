@@ -107,10 +107,12 @@ function startReveal() {
   nextTick(() => {
     initSmoothScroll()
     animateEntrance()
-    // Refresh ScrollTrigger with a slight delay to ensure layout is settled
-    setTimeout(() => {
-      ScrollTrigger.refresh()
-    }, 500)
+    
+    // Multiple refreshes to catch any layout shifts during loading
+    ScrollTrigger.refresh()
+    setTimeout(() => ScrollTrigger.refresh(), 500)
+    setTimeout(() => ScrollTrigger.refresh(), 1500)
+    setTimeout(() => ScrollTrigger.refresh(), 3000)
   })
 }
 
