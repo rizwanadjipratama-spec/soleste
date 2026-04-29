@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Royal Gilded Marble Palette */
+  --color-marble: #FDFBF7;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F9E6B3;
+  --color-gold-dark: #A67C00;
+  --color-silk: #FFFFFF;
+  --color-emerald: #013220;
+  --color-emerald-dark: #002216;
+  
+  /* Spacing (Golden Ratio) */
+  --phi: 1.618;
+  --space-unit: 1rem;
+}
+
+@layer base {
+/* Global scorched earth cursor hide */
+* {
+  cursor: none !important;
+}
+
+body {
+  cursor: none !important;
+  @apply bg-[var(--color-marble)] text-[var(--color-emerald)] font-sans antialiased selection:bg-[var(--color-gold)] selection:text-white;
+  overflow-x: hidden;
+}
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight text-[var(--color-gold-dark)];
+  }
+}
+
+@layer components {
+  .magic-text {
+    @apply relative inline-block;
+    background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-dark));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gold-shimmer 3s linear infinite;
+  }
+
+  .glass-premium {
+    @apply backdrop-blur-xl bg-white/30 border border-white/50 shadow-2xl;
+    box-shadow: 0 8px 32px 0 rgba(212, 175, 55, 0.15);
+  }
+
+  .btn-royal {
+    @apply px-8 py-3 rounded-full border border-[var(--color-gold)] text-[var(--color-gold-dark)] font-medium transition-all duration-500 hover:bg-[var(--color-gold)] hover:text-white active:scale-95;
+  }
+}
+
+@keyframes gold-shimmer {
+  to { background-position: 200% center; }
+}
+
+/* Lenis Smooth Scroll Fix */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
