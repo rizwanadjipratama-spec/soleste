@@ -132,25 +132,6 @@ function initSmoothScroll() {
   }
 
   requestAnimationFrame(raf)
-
-  // Advanced Image Reveal Logic (Only for .img-reveal elements)
-  const revealImages = () => {
-    document.querySelectorAll('.img-reveal:not(.loaded)').forEach((img) => {
-      if (img.complete) {
-        img.classList.add('loaded')
-      } else {
-        img.onload = () => img.classList.add('loaded')
-      }
-    })
-  }
-
-  // Run on mount and periodically check for new images (much cleaner than observer)
-  revealImages()
-  const interval = setInterval(revealImages, 1000)
-  
-  onUnmounted(() => {
-    clearInterval(interval)
-  })
 }
 
 function animateEntrance() {

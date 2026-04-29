@@ -6,7 +6,8 @@
       <div class="absolute inset-0 z-0">
         <img 
           src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=2500" 
-          class="absolute inset-0 w-full h-full object-cover scale-125 animate-cinematic-zoom img-reveal hero-bg-img"
+          class="absolute inset-0 w-full h-full object-cover scale-125 animate-cinematic-zoom"
+          style="--target-opacity: 0.15"
           alt="Hero Background"
         />
         <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-marble)]/30 via-[var(--color-marble)]/80 to-[var(--color-marble)]"></div>
@@ -260,8 +261,5 @@ onMounted(() => {
 @keyframes cinematic-zoom {
   from { transform: scale(1.25); }
   to { transform: scale(1); }
-}
-.hero-bg-img.loaded {
-  opacity: 0.15;
 }
 </style>

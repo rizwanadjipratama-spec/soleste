@@ -17,7 +17,7 @@
           @click="selectItem(i, $event)"
         >
           <div class="relative aspect-square glass-premium rounded-[2.5rem] overflow-hidden mb-12 transition-all duration-700 group-hover:scale-[1.03] group-hover:shadow-[0_30px_60px_rgba(212,175,55,0.2)]">
-            <img :src="item.image" :alt="item.name" class="w-full h-full object-cover filter saturate-[0.6] group-hover:saturate-100 transition-all duration-[1s] group-hover:scale-110 img-reveal" />
+            <img :src="item.image" :alt="item.name" class="w-full h-full object-cover filter saturate-[0.6] group-hover:saturate-100 transition-all duration-[1s] group-hover:scale-110" />
             
             <!-- Premium Dark Gradient Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-emerald-dark)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>

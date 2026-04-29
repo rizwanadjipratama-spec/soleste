@@ -12,7 +12,7 @@
         <div v-for="n in 2" :key="n" class="flex shrink-0">
           <div v-for="(img, i) in galleryImages" :key="i" class="w-[300px] md:w-[450px] px-4">
             <div class="relative aspect-[4/5] rounded-2xl overflow-hidden glass-premium group/item cursor-pointer">
-              <img :src="img" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover/item:grayscale-0 group-hover/item:scale-105 img-reveal" />
+              <img :src="img" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover/item:grayscale-0 group-hover/item:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-8">
                 <span class="text-white font-serif italic">The Art of Soléste</span>
               </div>
