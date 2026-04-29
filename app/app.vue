@@ -38,16 +38,16 @@
           <!-- Navigation Links -->
           <nav class="relative z-10 flex flex-col items-center gap-12 text-center mt-8 w-full px-8">
             <div class="py-2">
-              <a href="#story" @click="isMenuOpen = false" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Our Story</a>
+              <a @click="handleNav('#story')" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Our Story</a>
             </div>
             <div class="py-2">
-              <a href="#vault" @click="isMenuOpen = false" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">The Vault</a>
+              <a @click="handleNav('#vault')" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">The Vault</a>
             </div>
             <div class="py-2">
-              <a href="#selection" @click="isMenuOpen = false" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Collection</a>
+              <a @click="handleNav('#selection')" class="block text-4xl md:text-8xl font-serif text-[var(--color-marble)] hover:text-[var(--color-gold)] transition-all duration-700 transform hover:scale-105 hover:tracking-widest cursor-pointer">Collection</a>
             </div>
             <div class="mt-12 py-2">
-              <a href="#booking" @click="isMenuOpen = false" class="inline-block border border-[var(--color-gold)] px-10 md:px-14 py-5 rounded-full text-lg md:text-2xl font-serif text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-emerald-dark)] transition-all duration-700 cursor-pointer shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)]">Book an Audience</a>
+              <a @click="handleNav('#booking')" class="inline-block border border-[var(--color-gold)] px-10 md:px-14 py-5 rounded-full text-lg md:text-2xl font-serif text-[var(--color-gold)] hover:bg-[var(--color-gold)] hover:text-[var(--color-emerald-dark)] transition-all duration-700 cursor-pointer shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)]">Book an Audience</a>
             </div>
           </nav>
 
@@ -107,12 +107,26 @@ function startReveal() {
   nextTick(() => {
     initSmoothScroll()
     animateEntrance()
+    ScrollTrigger.refresh()
   })
 }
 
 onMounted(() => {
   window.scrollTo(0, 0)
 })
+
+function handleNav(id) {
+  isMenuOpen.value = false
+  if (lenis) {
+    // Delay slightly to allow menu close animation to start
+    setTimeout(() => {
+      lenis.scrollTo(id, {
+        duration: 2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      })
+    }, 400)
+  }
+}
 
 function finishLoading() {
   isLoading.value = false

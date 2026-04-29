@@ -74,7 +74,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-        <div v-for="(cake, i) in cakes" :key="i" class="cake-card group opacity-0 translate-y-20 cursor-pointer">
+        <div v-for="(cake, i) in cakes" :key="i" class="cake-card group cursor-pointer">
           <div class="relative aspect-[3/4] overflow-hidden glass-premium rounded-[2rem] mb-8 shadow-2xl group-hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] transition-all duration-700">
             <img :src="cake.image" :alt="cake.name" class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110 filter saturate-[0.8] group-hover:saturate-100 img-reveal" />
             
@@ -102,11 +102,11 @@
       <div class="absolute top-0 right-0 w-1/2 h-full bg-[var(--color-gold)]/5 -skew-x-12 translate-x-20"></div>
       
       <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div class="relative reveal-artist-img opacity-0">
+        <div class="relative reveal-artist-img">
           <div class="aspect-square rounded-full border border-[var(--color-gold)]/30 absolute -inset-10 animate-spin-slow"></div>
           <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=1000" class="relative z-10 rounded-3xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Artist at work" />
         </div>
-        <div class="reveal-artist-text opacity-0">
+        <div class="reveal-artist-text">
           <h3 class="text-5xl mb-8 text-[var(--color-gold)]">The Artist's Atelier</h3>
           <p class="text-xl leading-relaxed opacity-80 mb-10">
             Behind every Soléste creation is a symphony of passion and precision. Our artists don't just bake; they compose flavors and sculpt textures that transcend the ordinary.
@@ -206,37 +206,37 @@ onMounted(() => {
   })
 
   // Artist section reveal
-  gsap.to('.reveal-artist-img', {
+  gsap.from('.reveal-artist-img', {
     scrollTrigger: {
       trigger: '.reveal-artist-img',
       start: 'top 80%',
     },
-    opacity: 1,
-    x: 0,
+    opacity: 0,
+    x: -50,
     duration: 1.5,
     ease: 'power3.out'
   })
 
-  gsap.to('.reveal-artist-text', {
+  gsap.from('.reveal-artist-text', {
     scrollTrigger: {
       trigger: '.reveal-artist-text',
       start: 'top 80%',
     },
-    opacity: 1,
-    y: 0,
+    opacity: 0,
+    y: 30,
     duration: 1.5,
     ease: 'power3.out',
     delay: 0.2
   })
 
   // Scroll animations for gallery
-  gsap.to('.cake-card', {
+  gsap.from('.cake-card', {
     scrollTrigger: {
       trigger: '.cake-card',
       start: 'top 85%',
     },
-    opacity: 1,
-    y: 0,
+    opacity: 0,
+    y: 30,
     duration: 1.2,
     stagger: 0.1,
     ease: 'power3.out'
