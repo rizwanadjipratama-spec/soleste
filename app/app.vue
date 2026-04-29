@@ -107,7 +107,10 @@ function startReveal() {
   nextTick(() => {
     initSmoothScroll()
     animateEntrance()
-    ScrollTrigger.refresh()
+    // Refresh ScrollTrigger with a slight delay to ensure layout is settled
+    setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, 500)
   })
 }
 
@@ -133,6 +136,8 @@ function finishLoading() {
 }
 
 function initSmoothScroll() {
+  gsap.registerPlugin(ScrollTrigger)
+  
   lenis = new Lenis({
     duration: 1.5,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -145,12 +150,14 @@ function initSmoothScroll() {
     infinite: false,
   })
 
-  function raf(time) {
-    lenis.raf(time)
-    requestAnimationFrame(raf)
-  }
+  // Synchronize ScrollTrigger with Lenis
+  lenis.on('scroll', ScrollTrigger.update)
 
-  requestAnimationFrame(raf)
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+
+  gsap.ticker.lagSmoothing(0)
 }
 
 function animateEntrance() {
